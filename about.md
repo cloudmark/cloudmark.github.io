@@ -3,13 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Hi there!, I'm Mark, a software engineer based in Malta.  This site is my personal repository where I share ideas, ongoing projects and anything that attracts my interests. 
 
 ### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+[mmgalea@gmail.com](mailto:email@domain.com)
