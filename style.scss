@@ -31,7 +31,7 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 1024px;
   padding: 0 10px;
   width: 100%;
 }
@@ -319,6 +319,17 @@ nav {
 footer {
   padding: 20px 0;
   text-align: center;
+}
+
+.footnotes {
+  background: #efefef;
+  padding:10px 10px;
+  border-radius: 10px;
+}
+
+.footnote {
+  vertical-align: super;
+  font-size: smaller;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
