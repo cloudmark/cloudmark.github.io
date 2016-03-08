@@ -334,8 +334,22 @@ footer {
 
 .step {
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
     display: block;
+}
+
+.button_inline{
+  display: inline;
+  background-color: #34302d;
+  background-image: none;
+  border-radius: 0;
+  color: #f1f1f1;
+  font-size: 14px;
+  line-height: 14px;
+  //font-family: "Montserrat",sans-serif;
+  border: 2px solid #6db33f;
+  padding: 5px 5px;
+
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
