@@ -268,13 +268,13 @@ union({test -> 2.equals(test)}, {test -> 3.equals(test)})(2)
 
 Replace all occurrences of `test` with the value 2, we obtain:  
 
-```
+```kotlin
 {test1 -> 2.equals(test1)}(2) || {test2 -> 3.equals(test2)}(2)
 ```
 
 Replace all occurrences of `test1` and `test2` with the value 2, we obtain:      
 
-```
+```kotlin
 2.equals(2) || 3.equals(2)
 true
 ```
