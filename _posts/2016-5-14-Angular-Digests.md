@@ -4,7 +4,7 @@ title: Controlling Digests in AngularJS
 image: /images/angular/angular.png
 ---
 
-<img src="{{ site.baseurl }}/images/angular/angular.png"/ class="title" > AngularJS is a great framework to consider when developing Single Page Applications however, as the displayed datasets grow in size, the application response times deteriorate quickly. In this post I will go through a number of techniques which can be used to tackle these performance problems and I will suggest a new technique to solve this problem.  So let's get started.     
+<img class="title" src="{{ site.baseurl }}/images/angular/angular.png"/> AngularJS is a great framework to consider when developing Single Page Applications however, as the displayed datasets grow in size, the application response times deteriorate quickly. In this post I will go through a number of techniques which can be used to tackle these performance problems and I will suggest a new technique to solve this problem.  So let's get started.     
  
 
 # Angular Digest 

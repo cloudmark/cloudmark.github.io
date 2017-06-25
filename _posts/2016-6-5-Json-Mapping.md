@@ -4,7 +4,7 @@ title: TypeScript Json Mapper
 image: /images/types/typescript.jpg
 ---
 
-<img src="{{ site.baseurl }}/images/types/typescript.jpg"/ class="title" > One of the advantages of using TypeScript is that it augments ES6 with type information and annotations.  When using JSON, data might not be represented using _camelCase_ notation and hence one cannot simply typecast a JSON object directly onto a TypeScript "typed" object.  Traditionally one would solve this problem by creating custom mappers for all the data objects. In this post we will create a generic custom mapper which automates this process by using declarative annotations on Typescript objects.  Finally we will package this custom mapper in a class which can be used directly from Angular to handle conversion of JSON objects to "typed" objects.  
+<img class="title" src="{{ site.baseurl }}/images/types/typescript.jpg"/> One of the advantages of using TypeScript is that it augments ES6 with type information and annotations.  When using JSON, data might not be represented using _camelCase_ notation and hence one cannot simply typecast a JSON object directly onto a TypeScript "typed" object.  Traditionally one would solve this problem by creating custom mappers for all the data objects. In this post we will create a generic custom mapper which automates this process by using declarative annotations on Typescript objects.  Finally we will package this custom mapper in a class which can be used directly from Angular to handle conversion of JSON objects to "typed" objects.  
 
 #  Ceci n’est pas une pipe
 

@@ -4,7 +4,7 @@ title: Functions as Data
 image: /images/func_as_data/brain.png
 ---
 
-<img src="{{ site.baseurl }}/images/func_as_data/brain.png"/ class="title" > Programming languages have evolved largely through a series of abstractions; these abstractions mostly deal with control (e.g. functions) or data.  In the post, [Houses, Arrays and Higher Order Functions]({{ site.baseurl }}/Higher-Order-Functions-On-Arrays/), we have focused on the use of functions as control elements and have delved into the concept of higher order functions.  Today we will revisit functions and focus on their use as data elements.  Using functions to represent data might seem pretty counter intuitive at first but this blurred line between functions as control elements and functions as data elements is a powerful concept.  
+<img class="title" src="{{ site.baseurl }}/images/func_as_data/brain.png"/> Programming languages have evolved largely through a series of abstractions; these abstractions mostly deal with control (e.g. functions) or data.  In the post, [Houses, Arrays and Higher Order Functions]({{ site.baseurl }}/Higher-Order-Functions-On-Arrays/), we have focused on the use of functions as control elements and have delved into the concept of higher order functions.  Today we will revisit functions and focus on their use as data elements.  Using functions to represent data might seem pretty counter intuitive at first but this blurred line between functions as control elements and functions as data elements is a powerful concept.  
 
                 
 # Sets

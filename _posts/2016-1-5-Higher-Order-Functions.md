@@ -4,7 +4,7 @@ title: Higher Order Functions in Practice
 image: /images/lambda.jpg
 ---
 
-<img src="{{ site.baseurl }}/images/lambda.jpg"/ class="title" >
+<img class="title" src="{{ site.baseurl }}/images/lambda.jpg"/>
 One of the best features that Javascript has to offer is that it treats functions as **first class** citizens.  In fact one could argue (without causing a huge flame war) that Javascript is to date, one of the most widespread functional language.  In this post I will explain what a higher order function is and illustrate how we can make use of higher order functions to simplify our code. 
 
 # Summing things up! 

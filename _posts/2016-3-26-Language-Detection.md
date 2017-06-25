@@ -4,7 +4,7 @@ title: Language Detection using N-Grams
 image: /images/language/language.png
 ---
 
-<img src="{{ site.baseurl }}/images/language/language.png"/ class="title" > Lately I have revisited language detection and I thought it would be quite interesting to create a system which detects languages through [N-Gram](https://en.wikipedia.org/wiki/N-gram)s using Javascript. Firstly, in today's post, I will describe what NGrams are and give a general description of how we can use them to create a language detector.  In the next post we will take a deep dive and implement this language detector using Javascript.  
+<img class="title" src="{{ site.baseurl }}/images/language/language.png"/> Lately I have revisited language detection and I thought it would be quite interesting to create a system which detects languages through [N-Gram](https://en.wikipedia.org/wiki/N-gram)s using Javascript. Firstly, in today's post, I will describe what NGrams are and give a general description of how we can use them to create a language detector.  In the next post we will take a deep dive and implement this language detector using Javascript.  
 
 So how does it work? 
 The system is based on calculating and comparing _language profiles_ of N-gram frequencies. The system generates a _language profile_ for the N-grams in particular language by using training data for the language in question and later uses these profiles to make its detection. Given a novel document to be classified, the system computes the N-gram profile of this document (_document profile_) and compares the _distance_ between this _document profile_ and the _language profiles_ for all the supported languages. The _language profile_ with the minimal distance is considered to represent the detected language.  

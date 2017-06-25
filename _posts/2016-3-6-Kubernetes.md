@@ -4,7 +4,7 @@ title: Dockerise, Deploy, Update Code, Repeat
 image: /images/kubernetes/kubernetes.png
 ---
 
-<img src="{{ site.baseurl }}/images/kubernetes/kubernetes.png"/ class="title" > At SuprNation we have been using Docker for quite a while now. [Docker](http://www.docker.io) has been an amazing tool in our arsenal - it has enabled us to package and deploy microservices without having to worry about inconsistencies (library, servers, OS) between live, staging and dev environments.  In this post we will create a simple Java/Spring application, container-ise it using Docker, and deploy it on [Google Cloud Platform](https://cloud.google.com/) using [Kubernetes](http://kubernetes.io/).  
+<img class="title" src="{{ site.baseurl }}/images/kubernetes/kubernetes.png"/> At SuprNation we have been using Docker for quite a while now. [Docker](http://www.docker.io) has been an amazing tool in our arsenal - it has enabled us to package and deploy microservices without having to worry about inconsistencies (library, servers, OS) between live, staging and dev environments.  In this post we will create a simple Java/Spring application, container-ise it using Docker, and deploy it on [Google Cloud Platform](https://cloud.google.com/) using [Kubernetes](http://kubernetes.io/).  
 
 # Setting things up
 We will start our adventure into the Docker/Kubernetes world by creating a simple _Hello World_ application in Java. We shall bootstrap our application using the [Spring Initializr](http://start.spring.io/) project. So let's head over to the [Spring Initializr](http://start.spring.io/) site, type in a `Group` and an `Artifact` name and hit the Generate Project button. 

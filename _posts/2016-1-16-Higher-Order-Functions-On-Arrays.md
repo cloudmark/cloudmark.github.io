@@ -4,7 +4,7 @@ title: Houses, Arrays and Higher Order Functions
 image: /images/home.png
 ---
 
-<img src="{{ site.baseurl }}/images/home.png"/ class="title" >
+<img class="title" src="{{ site.baseurl }}/images/home.png"/>
 In the previous post we made use of higher order functions to generalise the __summation__ function.   Using HOFs we managed to implement a solution that was much simpler - 
 _as defined by Rich Hickey over [here](http://www.infoq.com/presentations/Simple-Made-Easy)_ - 
 than its iterative (and less evolved) cousin. In this post we are going to apply the same technique on arrays and apply this on a dataset of house prices. 
