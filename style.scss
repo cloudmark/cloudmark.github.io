@@ -338,6 +338,11 @@ footer {
     display: block;
 }
 
+.center {
+  margin: 0 auto;
+  display: block;
+}
+
 .button_inline{
   display: inline;
   background-color: #34302d;
@@ -388,15 +393,6 @@ table tr th, table tr td
   padding-left: 15px;
   background: #eaeaea;
 }
-
-.highlight {
-  background-color: #1c2125 !important;
-  .nx, .language-text {
-    color: #bfbfbf !important;
-  }
-
-}
-
 
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
