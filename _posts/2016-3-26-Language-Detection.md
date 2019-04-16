@@ -18,12 +18,12 @@ So what is exactly an N-Gram?  N-Gram is an N-character slice of a longer string
 
 In general a string of length \\(k\\), padded with blanks, will have \\(k+1\\) bi-grams, \\(k+1\\) tri-grams, \\(k+1\\) quad-grams and so on.  
 
-#Why does this all work?
+# Why does this all work?
 Human language has some words which are used more than others.  For example you can imagine that in a document the word _the_ will occur more frequently than the word _aardvark_.  Moreover there is always a small set of words which dominates most of the language in terms of frequency of use.  This is true both for words in a particular language and also for words in a particular category.  Thus words which appear in a sporty document will be different from the words that appear in a political document and words which are in the English language will obviously be different from words which are in the French language.  
 
 Well it turns out that these small fragments of words (N-grams) also obey (approximately) the same property.  Thus given a document in a particular language we will always find a set of N-grams which dominate - you can visualise these N-grams as a language palette from which words are formed.  These set of N-grams will be different for each language.  If we use this language detector on small fragments of text we are less susceptible to noise hence making our language detection more resilient. 
 
-#Pre-processing
+# Pre-processing
 Generation of the _language profiles_ is easy.  Given an input document the following steps have to be performed:
 
   - Remove any extra spacing and make sure that there is always a letter before a punctuation mark; `a.` is good while `a .` is bad.  
@@ -34,14 +34,14 @@ Generation of the _language profiles_ is easy.  Given an input document the foll
   - Use a hash table to find the counter associated with the particular N-gram and increment it.  When done sort the counts in reverse order by the number of occurrences and take the top \\(n\\) N-Grams (_limit_).  The result is the N-gram frequency profile of the language.  We will need to optimise the limit parameter using the validation data.
 
 
-#What to expect
+# What to expect
 From other language detection frameworks implemented we know that we should expect the following results:
 
 - The top 300 or so N-grams are almost always highly correlated to the language.  Thus the _language profile_ of a sporty document will be very similar to the _language profile_ generated from a political document in the same language.  This gives us confidence that if we train the system on the Declaration of Human Right we will still be able to classify documents to the correct language even though they might have completely different topics. 
 - The highest ranking N-grams are mostly uni-grams and simply reflect the distribution of characters in a language.  After uni-grams N-grams representing _prefixes_ and _suffixes_ should be the most popular.  
 - Starting at around rank 300 or so, an N-gram frequency profile begins to become specific to the topic.  
 
-#How to compare N-gram models
+# How to compare N-gram models
 Given that we have created the _language profile_ for the languages we will support, how do we detect what language a text fragment is in? First thing we need to do is to repeat the pre-processing steps discussed in the previous section creating the _document profile_ for the text fragment.  Next, we take the _document profile_ and calculate a simple rank-order statistic which we call the ``out of place'' measure. This measure determines how far out of place an N-gram in one profile is from its place in another profile.  For example given the following: 
 
   - **English Language Profile** [`TH`, `ING`, `ON`, `ER`, `AND`, `ED`]
@@ -54,5 +54,5 @@ In order to classify a sample document we compute the overall distance measure b
 for each language using the out-of-place measure and then pick the language which has the smallest difference.  Alternatively we could 
 also rank them and present the user with a ranked list of detected languages.  
 
-#Conclusion
+# Conclusion
 In this post we described a technique for detecting language by using the N-gram model.  If things are still unclear don't despair things will be clearer once you get your hands dirty! Hope to see you all in the next post.  Stay safe and keep hacking!
