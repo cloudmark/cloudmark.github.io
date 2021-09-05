@@ -10,66 +10,66 @@ This example is an adaptation of the SICP Picture Language example found in the 
 # A Picture Language
 This section present a simple language for drawing pictures that illustrates the power of data abstraction and closure, and also exploits higher order procedures in an essential way.The language is designed to make it easy to experiment with patterns such as this one
 
-<a class="jsbin-embed" href="http://jsbin.com/heduqev/embed?output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/heduqev/embed?output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-which are composed of repeated elements that are shifted and scaled.  In this language, the data objects being combined are represented as functions instead of objects or lists. The functions in this language satisfy the closure property.  This allows us to easily build arbitrary complicated patterns.  
+which are composed of repeated elements that are shifted and scaled.  In this language, the data objects being combined are represented as functions instead of objects or lists. The functions in this language satisfy the closure property.  This allows us to easily build arbitrary complicated patterns.
 
-In general an operation for combining data objects satisfies the closure property if the result of combining things with that o peration can themselves be combined using the same operation.  Closure is the key to power in any means of combination because it permits us to create _hierarchical_ structures - structures made up of parts, which themselves are made up of parts, and so on.  
+In general an operation for combining data objects satisfies the closure property if the result of combining things with that o peration can themselves be combined using the same operation.  Closure is the key to power in any means of combination because it permits us to create _hierarchical_ structures - structures made up of parts, which themselves are made up of parts, and so on.
 
 # The picture language
-Part of the elegance of this picture language is that there is only one kind of element, called a _painter_.  A painter draws an image that is shifted and scaled to fit within a designated parallelogram-shaped frame.  For example, there is a primitive painter we call `Wave` that makes a crude line drawing 
+Part of the elegance of this picture language is that there is only one kind of element, called a _painter_.  A painter draws an image that is shifted and scaled to fit within a designated parallelogram-shaped frame.  For example, there is a primitive painter we call `Wave` that makes a crude line drawing
 
-<a class="jsbin-embed" href="http://jsbin.com/cinus/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/cinus/embed?output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-The Javascript code to use a `Wave` painter and draw it onto a `Frame` is the follows: 
+The Javascript code to use a `Wave` painter and draw it onto a `Frame` is the follows:
 
 ```javascript
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
-var frame = new Frame(ctx,  new Vector2(0, 0), 
-							new Vector2(480,0), 
+var frame = new Frame(ctx,  new Vector2(0, 0),
+							new Vector2(480,0),
 							new Vector2(0,480));
 var painter = Wave();
 painter(frame)
 ```
 
-What is important to note is that the actual shape of the drawing depends on the `Frame`.  So if we create a smaller frame (but still use the same html canvas) the `Wave` painter would scale accordingly. 
+What is important to note is that the actual shape of the drawing depends on the `Frame`.  So if we create a smaller frame (but still use the same html canvas) the `Wave` painter would scale accordingly.
 
 ```javascript
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
-var frame = new Frame(ctx,  new Vector2(0, 0), 
-							new Vector2(240,0), 
+var frame = new Frame(ctx,  new Vector2(0, 0),
+							new Vector2(240,0),
 							new Vector2(0,240));
 var painter =Wave();
 painter(frame)
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/temico/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/temico/embed?output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
 Painters can be more elaborate than this for example we can have a painter which paints an image retrieved from the web, for now we will stick to the simple `Wave` painter.
 
-To combine images, we use various operations that construct new painters from given painters (closure!).  For example `Besides` operation takes two painters and produces a new, compound painter that draws the first painter's image in the left half of the frame and the second painter's image in the right half of the frame.  
+To combine images, we use various operations that construct new painters from given painters (closure!).  For example `Besides` operation takes two painters and produces a new, compound painter that draws the first painter's image in the left half of the frame and the second painter's image in the right half of the frame.
 
-<a class="jsbin-embed" href="http://jsbin.com/fibuli/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/fibuli/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-Similarly, `Below` takes two painters and produces a compound painter that draws the first painter's image below the second painter's image.  
+Similarly, `Below` takes two painters and produces a compound painter that draws the first painter's image below the second painter's image.
 
-<a class="jsbin-embed" href="http://jsbin.com/dunini/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/dunini/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-Some operations transform a single painter to produce a new painter.  For example `FlippedVert` takes a painter and produces a painter that draws its image upside-down, 
+Some operations transform a single painter to produce a new painter.  For example `FlippedVert` takes a painter and produces a painter that draws its image upside-down,
 
-<a class="jsbin-embed" href="http://jsbin.com/tohuki/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/tohuki/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-and `FlippedHorz` produces a painter that draws the original painter's image left-to-right reversed.  
+and `FlippedHorz` produces a painter that draws the original painter's image left-to-right reversed.
 
-<a class="jsbin-embed" href="http://jsbin.com/xasuzu/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/xasuzu/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-`Wave4` is a painter that is build up in two stages starting from `Wave`.  
+`Wave4` is a painter that is build up in two stages starting from `Wave`.
 
-<a class="jsbin-embed" href="http://jsbin.com/hifiwo/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/hifiwo/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-In building up a complex image in this manner we are exploting the fact that painters are closed under the language's means of combination.  The `Beside` and `Below` of two painters is itself a painter; therefore, we can use it as an element in making more complex painters. 
+In building up a complex image in this manner we are exploting the fact that painters are closed under the language's means of combination.  The `Beside` and `Below` of two painters is itself a painter; therefore, we can use it as an element in making more complex painters.
 
 Once we can combine painters, we would like to be able to abstract typical patterns of combining patters.  We will implement the painter operations as Javascript functions.  This means that we do not need a special abstraction mechanism in the picture language.  Since the means of combination are ordinary Javascript functions, we automatically have the capability to do anything with painter operations that we can do with functions.  For example, we can abstract the previous pattern `Wave4` as
 
@@ -93,9 +93,9 @@ function RightSplit(painter, n) {
 }
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/puwuxa/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/puwuxa/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-We can produce balanced patterns by branching both upwards as well as towards the right 
+We can produce balanced patterns by branching both upwards as well as towards the right
 
 ```javascript
 function CornerSplit(painter, n) {
@@ -117,9 +117,9 @@ function CornerSplit(painter, n) {
     }
 }
 ```
-<a class="jsbin-embed" href="http://jsbin.com/zokaja/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/zokaja/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-By placing four copies of a `CornerSplit` appropriately, we can obtain a pattern called `SquareLimit`, whose application to `Wave` is as follows: 
+By placing four copies of a `CornerSplit` appropriately, we can obtain a pattern called `SquareLimit`, whose application to `Wave` is as follows:
 
 ```javascript
 function SquareLimit(painter, n){
@@ -129,28 +129,28 @@ function SquareLimit(painter, n){
 }
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/bibase/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/bibase/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
 # Higher Order Operations
 In addition to abstracting patterns of combining painters, we can work at a higher level, abstracting patterns of combining painter operations.  That is, we can view the painter operations as elements to manipulate and can write means of combination for these elements - functions that take painter operations as arguments and create new painter operations.
 
-For example, `FlippedPairs` and `SquareLimit` each arrange four copies of painter's image in a square pattern; they differ only in how they orient the copies.  Below you can see the `FlippedPairs` code and output.   
+For example, `FlippedPairs` and `SquareLimit` each arrange four copies of painter's image in a square pattern; they differ only in how they orient the copies.  Below you can see the `FlippedPairs` code and output.
 
-<a class="jsbin-embed" href="http://jsbin.com/rumivu/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/rumivu/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
-One way to abstract this pattern of painter combination is with the following function, which takes four one-argument painter operations and produces a painter operation that transforms a given painter with those four operations and arranges the result in a square.  `tl`, `tr`, `bl`, `br` are the transformations to apply to the top left copy, the top right copy, the bottom left copy and the bottom right copy respectively. 
+One way to abstract this pattern of painter combination is with the following function, which takes four one-argument painter operations and produces a painter operation that transforms a given painter with those four operations and arranges the result in a square.  `tl`, `tr`, `bl`, `br` are the transformations to apply to the top left copy, the top right copy, the bottom left copy and the bottom right copy respectively.
 
 ```javascript
 function SquareOfFour(tl, tr, bl, br){
-	var top = Besides(tl, tr); 
-	var bottom = Besides(bl, br); 
-	return Below(bottom, top);	
+	var top = Besides(tl, tr);
+	var bottom = Besides(bl, br);
+	return Below(bottom, top);
 }
 ```
 
 The `FlippedPairs` can be defined in terms of `SquareOfFour` as follows:
 
-<a class="jsbin-embed" href="http://jsbin.com/didonu/embed?javascript,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+<a class="jsbin-embed" href="https://jsbin.com/didonu/embed?javascript,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.1"></script>
 
 # Frames
 Before we can show you how to implement painters and their means of combination, we must first consider frames.  A frame can be described by three vectors - an origin vector and two edge vectors.  The origin vector specifies the offset of the frame's origin from some absolute origin in the plane, and the edge vectors specify the offset of the frame's corners from its origin.  If the edges are perpendicular, the frame will be rectangular.  Otherwise the frame will be a more general parallelogram.  
@@ -343,4 +343,4 @@ The picture langage exercises some of critical ideas about abstraction with proc
 
 We have also obtained a glimpse of another crucial idea about language and program design.  This is the approach of _stratified design_, the notion that a complex system should be structures as a sequence of levels that are described using a sequence of languages.  Each level is constructed by combining parts that are regarded as primitive at the level, and the parts constructed at each level are used as primites at the next level.  The language used at each level of stratified design has primitives, and means of abstraction appropriate to the level of detail. 
 
-Stratified design helps make programs _robust_, that is, it makes it likely that small changes in a specification will require corresponding small changes in the program.  For instance, suppose we want to change the images based on `Wave`.  We could work at the lowest level to change the appearance of the `Wave` element; we could work at the middle level to change the way the `CornerSplit` replicates the `Wave`; we could work at the highest level to change how the `SquareLimit` arranges the four copies of the corner. In general, each level of a stratified design provides a different vocabulary  for expressing the characteristics of the system, and a different kind of ability to change it.      
+Stratified design helps make programs _robust_, that is, it makes it likely that small changes in a specification will require corresponding small changes in the program.  For instance, suppose we want to change the images based on `Wave`.  We could work at the lowest level to change the appearance of the `Wave` element; we could work at the middle level to change the way the `CornerSplit` replicates the `Wave`; we could work at the highest level to change how the `SquareLimit` arranges the four copies of the corner. In general, each level of a stratified design provides a different vocabulary  for expressing the characteristics of the system, and a different kind of ability to change it.
