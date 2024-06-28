@@ -50,4 +50,10 @@
 
     {% include analytics.html %}
   </body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      mermaid.initialize({ startOnLoad: true });
+    });
+  </script>
 </html>
