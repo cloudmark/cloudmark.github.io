@@ -1,6 +1,11 @@
 ---
 ---
 
+@use "reset";
+@use "variables" as *;
+@use "highlights";
+@use "svg-icons";
+
 //
 // IMPORTS
 //
@@ -8,9 +13,7 @@
 // @import url(https://fonts.googleapis.com/css?family=Inconsolata);
 // @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,500,500italic,700,700italic,800,800italic,900,900italic,300italic,300,100italic,100);
 @import url(https://fonts.googleapis.com/css?family=Neuton:400,400italic,700,800,200,300);
-@import "reset";
-@import "variables";
-// Syntax highlighting @import is at the bottom of this file
+// Syntax highlighting @use is at the bottom of this file
 
 /**************/
 /* BASE RULES */
@@ -395,7 +398,3 @@ table tr th, table tr td
 }
 
 
-// Settled on moving the import of syntax highlighting to the bottom of the CSS
-// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
-@import "highlights";
-@import "svg-icons";

@@ -1,0 +1,264 @@
+/* Sample 8 — Banana Battle Royale arena */
+
+* { box-sizing: border-box; }
+
+.sample8-page {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #111827;
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 40%, #047857 100%);
+}
+
+.sample8-header {
+  padding: 24px 24px 0;
+  max-width: 1060px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sample8-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #fbbf24;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  letter-spacing: -0.5px;
+}
+
+.sample8-lead {
+  margin: 0 0 20px;
+  color: #a7f3d0;
+  font-size: 14px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.sample8-lead a {
+  color: #fbbf24;
+}
+
+.sample8-main {
+  padding: 0 24px 32px;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+/* ── Arena dashboard layout ── */
+
+.arena-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.arena-panel {
+  box-sizing: border-box;
+}
+
+/* ── Arena ring (SVG) ── */
+
+.arena-panel--ring {
+  flex: 0 0 420px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.arena-svg {
+  width: 400px;
+  height: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Monkey node backgrounds */
+.arena-monkey-bg {
+  fill: rgba(255, 255, 255, 0.12);
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 2;
+  transition: fill 0.3s;
+}
+
+.arena-monkey--eliminated-bg {
+  fill: rgba(239, 68, 68, 0.15);
+  stroke: rgba(239, 68, 68, 0.3);
+  stroke-width: 2;
+}
+
+/* ── Sidebar (scores + log) ── */
+
+.arena-sidebar {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Scoreboard ── */
+
+.arena-panel--scores {
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.arena-panel--scores h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.arena-score-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arena-score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #d1fae5;
+  font-size: 14px;
+}
+
+.arena-score-row:last-child {
+  border-bottom: none;
+}
+
+.arena-score-rank {
+  width: 22px;
+  font-weight: 700;
+  color: #fbbf24;
+  font-size: 13px;
+}
+
+.arena-score-emoji {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.arena-score-name {
+  flex: 1;
+  font-weight: 600;
+  color: #ecfdf5;
+}
+
+.arena-score-health {
+  font-size: 12px;
+  min-width: 80px;
+  text-align: right;
+}
+
+.arena-score-bananas {
+  font-size: 12px;
+  min-width: 50px;
+  text-align: right;
+  color: #fbbf24;
+}
+
+.arena-score-wait {
+  color: #6ee7b7;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+/* ── Restart button ── */
+
+.arena-restart-wrap {
+  text-align: center;
+}
+
+.arena-restart-btn {
+  display: inline-block;
+  padding: 10px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #064e3b;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+}
+
+.arena-restart-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.5);
+}
+
+.arena-restart-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Battle log ── */
+
+.arena-panel--log {
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.arena-panel--log h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #6ee7b7;
+}
+
+.arena-log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12.5px;
+  max-height: 260px;
+  overflow-y: auto;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+.arena-log-item {
+  padding: 3px 0;
+  color: #a7f3d0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.4;
+}
+
+.arena-log-item:first-child {
+  color: #ecfdf5;
+  font-weight: 500;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 800px) {
+  .arena-dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+  .arena-panel--ring {
+    flex: none;
+    width: 100%;
+    max-width: 440px;
+  }
+  .arena-sidebar {
+    width: 100%;
+    max-width: 440px;
+  }
+}
