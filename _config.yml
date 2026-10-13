@@ -10,6 +10,9 @@ title: Mark Galea
 # Short bio or description (displayed in the header)
 description: stay safe, keep hacking! - cloudmark
 
+# Dates are shown in Malta time, so a post dated just after midnight is not a day early on GitHub's UTC build.
+timezone: Europe/Malta
+
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars.githubusercontent.com/u/1745830
 
