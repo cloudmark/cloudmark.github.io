@@ -13,8 +13,8 @@
   --c: #1c1f3a;
   --tint: #f4f5fa;
   --ct: #1c1f3a;
-  --ui: 'Archivo', system-ui, sans-serif;
-  --read: 'Archivo', system-ui, sans-serif;
+  --ui: 'Bricolage Grotesque', system-ui, sans-serif;
+  --read: 'Bricolage Grotesque', system-ui, sans-serif;
   --mono: 'Iosevka', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
@@ -43,11 +43,11 @@ svg.arrow.back-arrow { transform: scaleX(-1); }
 .me:hover { background: #dde1ee; }
 .me img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
 .who { display: grid; gap: 3px; }
-.who b { display: block; font: 750 23px/1 var(--ui); font-stretch: 72%; letter-spacing: -.005em; }
+.who b { display: block; font: 700 22px/1.05 var(--ui); letter-spacing: -.02em; text-transform: lowercase; }
 .who span { font: 500 13.5px/1.2 var(--ui); color: var(--grey); }
-nav.mini { margin-left: auto; display: flex; gap: 28px; font: 650 13px var(--ui); font-stretch: 85%; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); }
+nav.mini { margin-left: auto; display: flex; gap: 24px; font: 500 15px var(--ui); text-transform: lowercase; color: var(--grey); }
 nav.mini a { display: inline-flex; align-items: center; min-height: 44px; transition: color .2s var(--ease); }
-nav.mini a:hover, nav.mini a[aria-current] { color: var(--ink); }
+nav.mini a:hover, nav.mini a[aria-current] { font-weight: 650; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 nav.mini a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 7px; }
 nav.mini a[aria-current] { font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
@@ -123,7 +123,7 @@ ol.posts.chrono .tag:hover { text-decoration: underline; text-underline-offset: 
 .latest { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: center; margin: 40px 0 0; padding: 36px; border-radius: 28px; background: var(--tint); transition: background .25s var(--ease); }
 .latest:hover { background: color-mix(in srgb, var(--tint) 82%, var(--c) 18%); }
 .latest svg.doodle { order: 2; width: 100%; height: auto; aspect-ratio: 4 / 3; padding: 18px 22px; border-radius: 20px; background: #fff; box-shadow: 0 1px 2px rgba(28, 31, 58, .06), 0 8px 24px -12px rgba(28, 31, 58, .18); box-sizing: border-box; }
-.latest h2 { margin: 0; font: 750 48px/1.02 var(--read); font-stretch: 72%; letter-spacing: -.005em; text-wrap: balance; }
+.latest h2 { margin: 0; font: 700 44px/1.05 var(--read); letter-spacing: -.025em; text-wrap: balance; }
 .latest h2 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .latest .meta { margin: 14px 0 0; font: 500 15px var(--ui); color: var(--ct); }
 .latest .sum { margin: 10px 0 0; font-size: 18px; color: var(--soft); max-width: 46ch; }
@@ -291,9 +291,8 @@ h1.pt { font: 700 44px/1.1 var(--read); letter-spacing: -.035em; margin: 18px 0 
 @keyframes splash-bloom { from { opacity: 0; transform: scale(.45) rotate(-10deg); filter: blur(8px); } 50% { opacity: 1; } to { opacity: 1; transform: none; filter: none; } }
 .page .prose { margin-top: 24px; max-width: 680px; }
 
-// Headings use Archivo's condensed width; text stays at normal width.
-.display, h1.pt, .latest h2, .prose h1, .prose h2, .prose h3, h2.year, .plate h2, h2.say, .series h2, .next b { font-stretch: 72%; font-weight: 750; letter-spacing: -.005em; }
-ol.posts li > a { font-stretch: 85%; }
+// Headings: Bricolage at a heavier weight with tight tracking.
+.display, h1.pt, .latest h2, .prose h1, .prose h2, .prose h3, h2.year, .plate h2, h2.say, .series h2, .next b { font-weight: 700; letter-spacing: -.025em; }
 
 // ---------- responsive ----------
 @media (max-width: 1000px) {
@@ -308,7 +307,7 @@ ol.posts li > a { font-stretch: 85%; }
   .col { padding: 0 16px; }
   .top { min-height: 60px; padding: 8px 0; }
   .me { width: 40px; height: 40px; }
-  .who b { font-size: 21px; }
+  .who b { font-size: 20px; }
   .top nav.mini { display: none; }
   .menu-btn { display: inline-flex; }
   .display { font-size: 38px; }
