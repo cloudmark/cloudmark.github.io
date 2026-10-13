@@ -5,8 +5,10 @@
     {% include meta.html %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@400..800&display=swap">
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/iosevka@5.0.11/400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/iosevka@5.0.11/400-italic.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v={{ site.time | date: '%s' }}">
     <link rel="me" href="https://mastodon.social/@cloudmark">
     <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="{{ site.baseurl }}/feed.xml">
   </head>
@@ -14,7 +16,7 @@
     <a class="skip" href="#main">Skip to content</a>
     <div class="col">
       <header class="top">
-        <a class="me" href="{{ site.baseurl }}/" aria-label="Home"><img src="{{ site.avatar }}" alt=""><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">{% include doodles/ring.svg %}</svg></a>
+        <a class="me" href="{{ site.baseurl }}/" aria-label="Home"><img src="{{ site.avatar }}" alt=""></a>
         <div class="who"><a href="{{ site.baseurl }}/"><b>{{ site.name }}</b></a><span>stay safe, keep hacking!</span></div>
         <nav class="mini" aria-label="Site">
           <a href="{{ site.baseurl }}/"{% if page.url == "/" or page.layout == "post" %} aria-current="page"{% endif %}>Writing</a>

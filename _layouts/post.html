@@ -53,6 +53,23 @@ layout: default
   </article>
 </div>
 <script>
+  // Code blocks get a header with the language and a copy button.
+  (function () {
+    var names = { scala: 'Scala', javascript: 'JavaScript', js: 'JavaScript', kotlin: 'Kotlin', bash: 'Terminal', sh: 'Terminal', shell: 'Terminal', java: 'Java', yaml: 'YAML', yml: 'YAML', sql: 'SQL', json: 'JSON', ts: 'TypeScript', typescript: 'TypeScript', html: 'HTML', coffeescript: 'CoffeeScript', text: 'Output', plaintext: '' };
+    document.querySelectorAll('.prose div.highlighter-rouge').forEach(function (block) {
+      var m = block.className.match(/language-([\w+-]+)/), lang = m ? m[1] : 'plaintext';
+      var label = lang in names ? names[lang] : lang;
+      var head = document.createElement('div'), span = document.createElement('span'), btn = document.createElement('button');
+      head.className = 'code-head'; span.textContent = label; btn.type = 'button'; btn.textContent = 'Copy';
+      btn.addEventListener('click', function () {
+        var code = block.querySelector('pre').innerText;
+        (navigator.clipboard ? navigator.clipboard.writeText(code) : Promise.reject()).then(function () { btn.textContent = 'Copied'; }, function () { btn.textContent = 'Press ⌘C'; });
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      });
+      head.appendChild(span); head.appendChild(btn); block.insertBefore(head, block.firstChild);
+    });
+  })();
+
   // Contents from the post's own h2s; shown only when there are enough to help.
   (function () {
     var h1s = document.querySelectorAll('.prose h1[id]'), hs = h1s.length >= 2 ? h1s : document.querySelectorAll('.prose h2[id]'), toc = document.querySelector('.toc');
