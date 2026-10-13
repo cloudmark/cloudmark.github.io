@@ -14,7 +14,7 @@ Every system I have worked on eventually grows the same bit of plumbing. Somethi
 > For a complete listing of all code samples and to clone the project, visit the [GitHub repository](https://github.com/fifteen02/eventstore/tree/main/samples).
 
 # Meet ACME
-Throughout this series we will follow ACME Corporation, purveyor of rockets, anvils and giant magnets. Wile E. Coyote is, by a comfortable margin, its best customer. Every time Wile orders something, three services need to know: **billing** has to charge him, **notifications** has to tell him his rocket has shipped (again), and a **dashboard** keeps a running tally of who is spending what.
+Throughout this series we will follow ACME Corporation, the company that sells rockets, anvils and giant magnets. Its best customer, by far, is Wile E. Coyote. Every time Wile orders something, three services need to know: **billing** has to charge him, **notifications** has to tell him his rocket has shipped (again), and a **dashboard** keeps a running tally of who is spending what.
 
 Simple enough, until billing is down for five minutes. When it comes back, which orders did it miss? In what order did they happen? And how does it avoid charging Wile twice for the same rocket? Those three questions are what EventStore answers, and this is the shape of the answer:
 
