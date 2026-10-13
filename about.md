@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+portrait: true
 ---
 Hi there! I'm Mark, a passionate software engineer based in the beautiful island of Malta. I thrive on solving puzzles and tackling programming problems, always on the lookout for innovative solutions and cutting-edge technologies.
 

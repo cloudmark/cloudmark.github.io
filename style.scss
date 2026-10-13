@@ -20,7 +20,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-padding-top: 84px; scroll-behavior: smooth; scrollbar-color: #c9cbdb var(--bg); -webkit-text-size-adjust: 100%; }
+html { scroll-padding-top: 96px; scroll-behavior: smooth; scrollbar-color: #c9cbdb var(--bg); -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--ui); -webkit-font-smoothing: antialiased; caret-color: #f07f1f; }
 ::selection { background: var(--hi); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
@@ -37,13 +37,14 @@ svg.arrow.back-arrow { transform: scaleX(-1); }
 // ---------- masthead ----------
 // Masthead: a compact bar that stays put, with a hairline under it.
 .masthead { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
-.top { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px 0; }
-.me { flex: none; display: block; width: 40px; height: 40px; border-radius: 50%; padding: 2px; box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .2s var(--ease); }
-.me:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
-.me img { display: block; width: 36px; height: 36px; border-radius: 50%; }
-.who { display: grid; gap: 0; line-height: 1.15; }
-.who b { display: block; font: 750 21px/1.05 var(--ui); font-stretch: 72%; letter-spacing: -.005em; }
-.who span { font: 500 13px/1.3 var(--ui); color: #a4500a; }
+.top { display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 12px 0; }
+// Avatar: the cut-out sits on a plain circle.
+.me { flex: none; display: block; width: 46px; height: 46px; border-radius: 50%; overflow: hidden; background: #e8ebf3; transition: background .2s var(--ease); }
+.me:hover { background: #dde1ee; }
+.me img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+.who { display: grid; gap: 3px; }
+.who b { display: block; font: 750 23px/1 var(--ui); font-stretch: 72%; letter-spacing: -.005em; }
+.who span { font: 500 13.5px/1.2 var(--ui); color: var(--grey); }
 nav.mini { margin-left: auto; display: flex; gap: 28px; font: 650 13px var(--ui); font-stretch: 85%; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); }
 nav.mini a { display: inline-flex; align-items: center; min-height: 44px; transition: color .2s var(--ease); }
 nav.mini a:hover, nav.mini a[aria-current] { color: var(--ink); }
@@ -63,8 +64,6 @@ nav.mini a[aria-current] { font-weight: 600; text-decoration: underline; text-de
 @keyframes drawer-out { to { transform: translateX(-100%); } }
 @keyframes fade-in { from { opacity: 0; } }
 .drawer-head { display: flex; align-items: center; gap: 12px; }
-.drawer-head .me { width: 40px; height: 40px; }
-.drawer-head .me img { width: 36px; height: 36px; }
 .drawer-close { display: inline-flex; }
 .drawer h2 { margin: 24px 0 8px; font: 600 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--grey); }
 .drawer-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 16px; padding: 4px; border-radius: 14px; background: var(--wash); }
@@ -93,7 +92,11 @@ h2.say { font: 700 28px/1.2 var(--read); letter-spacing: -.025em; margin: 64px 0
 // ---------- home ----------
 .skip { position: absolute; left: 16px; top: -60px; z-index: 10; padding: 10px 14px; border-radius: 10px; background: var(--ink); color: #fff; font: 600 15px var(--ui); }
 .skip:focus { top: 12px; }
-.intro { margin: 60px 0 0; max-width: 720px; }
+// Home hero: a modest headline with the one-line intro under it.
+.intro { margin: 48px 0 0; }
+.intro .display { font-size: 52px; line-height: 1; }
+.intro .lede { margin: 14px 0 0; font-size: 19px; max-width: 52ch; }
+.intro + .latest { margin-top: 36px; }
 
 // Two views of the same posts: newest first (default) or grouped by theme.
 .view-switch { display: inline-flex; gap: 4px; margin: 36px 0 0; padding: 4px; border-radius: 14px; background: var(--wash); }
@@ -139,7 +142,7 @@ ol.posts.chrono .tag:hover { text-decoration: underline; text-underline-offset: 
 
 .theme { display: grid; grid-template-columns: 280px 1fr; gap: 40px; padding: 44px 0; border-top: 1px solid var(--line); }
 .theme-index + .theme { border-top: 0; }
-.plate { position: sticky; top: 92px; align-self: start; border-radius: 22px; background: var(--tint); padding: 18px 20px 20px; }
+.plate { position: sticky; top: 104px; align-self: start; border-radius: 22px; background: var(--tint); padding: 18px 20px 20px; }
 .plate svg.doodle { width: 100%; height: auto; aspect-ratio: 4 / 3; }
 .plate h2 { font: 700 26px/1.15 var(--read); letter-spacing: -.025em; margin: 4px 0 0; }
 .plate p { margin: 8px 0 0; font-size: 15px; color: var(--soft); }
@@ -177,7 +180,7 @@ footer.end nav a:hover { color: var(--ink); }
 // ---------- post ----------
 .post-grid { display: grid; grid-template-columns: 200px minmax(0, 680px); column-gap: 40px; max-width: 968px; margin: 0 auto; padding: 0 24px; }
 .post-grid > .back { grid-column: 2; grid-row: 1; justify-self: start; }
-.rail { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 92px; align-self: start; margin-top: 40px; max-height: calc(100vh - 120px); overflow: auto; }
+.rail { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 104px; align-self: start; margin-top: 40px; max-height: calc(100vh - 132px); overflow: auto; }
 .rail-doodle { display: block; background: var(--tint); border-radius: 18px; padding: 14px 16px; }
 .rail-doodle svg.doodle { width: 100%; height: auto; aspect-ratio: 4 / 3; }
 .post-grid > .post { grid-column: 2; grid-row: 2; }
@@ -280,6 +283,12 @@ h1.pt { font: 700 44px/1.1 var(--read); letter-spacing: -.035em; margin: 18px 0 
 .series .project { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-top: 6px; font: 600 15px var(--ui); color: var(--ct); }
 
 .page .display { margin-top: 56px; }
+// About portrait: the watercolour splash blooms out once behind the cut-out, like ink spreading.
+.about-me { position: relative; float: right; width: 280px; margin: 40px 0 16px 40px; }
+.about-me img { display: block; width: 100%; height: auto; }
+.about-me .me-cut { position: absolute; inset: 0; }
+.about-me .splash { transform-origin: 50% 48%; animation: splash-bloom 1.2s cubic-bezier(.16, 1, .3, 1) .15s both; }
+@keyframes splash-bloom { from { opacity: 0; transform: scale(.45) rotate(-10deg); filter: blur(8px); } 50% { opacity: 1; } to { opacity: 1; transform: none; filter: none; } }
 .page .prose { margin-top: 24px; max-width: 680px; }
 
 // Headings use Archivo's condensed width; text stays at normal width.
@@ -297,11 +306,16 @@ ol.posts li > a { font-stretch: 85%; }
 }
 @media (max-width: 760px) {
   .col { padding: 0 16px; }
-  .top { min-height: 56px; }
+  .top { min-height: 60px; padding: 8px 0; }
+  .me { width: 40px; height: 40px; }
+  .who b { font-size: 21px; }
   .top nav.mini { display: none; }
   .menu-btn { display: inline-flex; }
   .display { font-size: 38px; }
-  .intro { margin-top: 32px; }
+  .intro { margin-top: 28px; }
+  .intro .display { font-size: 38px; }
+  .intro .lede { font-size: 17px; margin-top: 10px; }
+  .intro + .latest { margin-top: 24px; }
   .latest { grid-template-columns: 1fr; gap: 6px; margin-top: 28px; padding: 18px; }
   .latest svg.doodle { order: 0; width: 140px; padding: 10px 12px; border-radius: 16px; }
   .latest h2 { font-size: 32px; }
@@ -317,7 +331,7 @@ ol.posts li > a { font-stretch: 85%; }
   .theme-index svg.mini { width: 40px; height: 30px; }
   .theme { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
   // The plate shrinks to a sticky header so long lists keep their theme in view.
-  .plate { position: sticky; top: 57px; z-index: 2; display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; padding: 10px 16px; border-radius: 0 0 16px 16px; margin: 0 -16px; }
+  .plate { position: sticky; top: 61px; z-index: 2; display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; padding: 10px 16px; border-radius: 0 0 16px 16px; margin: 0 -16px; }
   .plate svg.doodle { width: 56px; }
   .plate h2 { font-size: 20px; margin: 0; }
   .plate p { display: none; }
@@ -337,6 +351,7 @@ ol.posts li > a { font-stretch: 85%; }
   .prose { font-size: 17px; }
   .prose h1, .prose h2 { font-size: 25px; }
   .prose div.highlighter-rouge, .prose > pre { margin-left: -16px; margin-right: -16px; border-radius: 0; }
+  .about-me { float: none; width: 220px; margin: 24px auto 0; }
   .next { grid-template-columns: 1fr; }
   .next a.fwd { text-align: left; }
   .next a.fwd small { justify-content: flex-start; }
