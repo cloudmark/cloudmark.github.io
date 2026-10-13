@@ -93,7 +93,13 @@ mvn -q install -DskipTests
 samples/bin/run-eventstore.sh
 ```
 
-That starts PostgreSQL and an AMQP broker, builds EventStore and runs it on port 8083 with a development token. Wile orders a rocket:
+That starts PostgreSQL and an AMQP broker, builds EventStore and runs it on port 8083 with a development token.
+
+If you'd rather watch than read JSON, open the debug console at <http://localhost:8083/debug/events>, paste `dev-eventstore-token` into the Token field, and keep it open while you follow along: every message below shows up there as it lands.
+
+<img class="center shot" alt="The EventStore debug console: the head of the log, each consumer's position on a ruler, and the log streaming in live" src="{{ site.baseurl }}/images/eventstore/debug-console.png"/>
+
+Wile orders a rocket:
 
 ```bash
 curl -X PUT http://localhost:8083/api/events/message \

@@ -208,6 +208,8 @@ h1.pt { font: 700 44px/1.1 var(--read); letter-spacing: -.035em; margin: 18px 0 
 .prose a:hover { background: var(--tint); }
 .prose strong, .prose b { font-weight: 600; color: var(--ink); }
 .prose img { display: block; margin: 1.4em auto; border-radius: 10px; height: auto; }
+// Screenshots of a UI get a hairline frame so white pages don't melt into ours.
+.prose img.shot { border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 32px -16px rgba(28, 31, 58, .25); }
 .prose img.emoji { display: inline; margin: 0; width: 1.15em; height: 1.15em; vertical-align: -.2em; border-radius: 0; }
 .prose hr { border: 0; border-top: 2px dotted #c9cbdb; margin: 2.4em 0; }
 .prose blockquote { margin: 1.6em 0; padding: 14px 20px; background: var(--wash); border-radius: 14px; color: var(--soft); font-style: italic; }
