@@ -2,6 +2,8 @@
 layout: post
 title: Decision Trees with Kotlin
 image: /images/kotlin/kotlin.png
+theme: ml
+summary: "Learning \"Play Tennis\" with a decision tree written in Kotlin."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/kotlin/kotlin.png"/> It has been quite a while since my last post; things have been pretty busy in preparation for the launch of our new product [VoodooDreams](https://www.voodoodreams.com). Now that we have shipped our baby, I am super eager to try out [Kotlin](https://www.kotlinlang.org/) - a new programming language from JetBrains targeting the JVM.  One interesting aspect about Kotlin (similar to Scala and other JVM-based languages) is that it treats functions as first class citizens (_IMO Functional Interfaces just patch the gap_).  In order to try out this language we will create a Decision Tree Learning algorithm which is one of the most used and practical methods for learning inductive inference.  

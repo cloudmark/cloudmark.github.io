@@ -2,6 +2,8 @@
 layout: post
 title: Why Kubernetes? Google Cloud Event Follow-up 
 image: /images/googlecloudevent/google-cloud-logo.jpg
+theme: infra
+summary: "Why we moved to Kubernetes, from my talk at Google Cloud Event Malta."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/googlecloudevent/event.jpg"/>

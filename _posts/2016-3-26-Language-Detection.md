@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Language Detection using N-Grams
+tags: [language-detection]
 image: /images/language/language.png
+theme: ml
+summary: "How n-gram profiles tell which language a sentence is in."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/language/language.png"/> Lately I have revisited language detection and I thought it would be quite interesting to create a system which detects languages through [N-Gram](https://en.wikipedia.org/wiki/N-gram)s using Javascript. Firstly, in today's post, I will describe what NGrams are and give a general description of how we can use them to create a language detector.  In the next post we will take a deep dive and implement this language detector using Javascript.  

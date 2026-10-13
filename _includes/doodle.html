@@ -1,0 +1,1 @@
+{% comment %}A theme's hand-drawn doodle. Usage: {% include doodle.html theme=theme class="..." %}{% endcomment %}<svg class="doodle {{ include.class }}" viewBox="0 0 120 90" data-doodle="{{ include.theme.doodle }}" data-color="{{ include.theme.color }}" aria-hidden="true" focusable="false">{% include doodles/{{ include.theme.doodle }}.svg %}</svg>

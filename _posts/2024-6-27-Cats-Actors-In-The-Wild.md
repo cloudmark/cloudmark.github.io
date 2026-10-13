@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Typed Actors in Action - Exploring Cats-Actors with Alice and Bob
+tags: [cats-actors]
 image: /images/cats-actors/logo-small.png
+theme: actors
+summary: "Typed actors in Cats-Actors 2.0, through Alice and Bob's wallet transfers."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/cats-actors/transaction-2.png"/>

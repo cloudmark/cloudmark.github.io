@@ -2,6 +2,8 @@
 layout: post
 title: An efficient headless CMS on top of Wordpress - a.k.a the ACF Compiler!
 image: /images/acf/acf.png
+theme: web
+summary: "Making ACF and WordPress fast enough to be a headless CMS."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/acf/acf.png"/> Headless CMSs are becoming quite popular and make up one of the important ingredients of a [JAMstack site](https://headlesscms.org/). At [SuprNation](http://www.suprnation.io/) we have been tinkering with headless CMSs for quite a while and we have succesfully implemented one using [Wordpress](https://wordpress.org/) (WP), [Advanced Custom Fields](https://www.advancedcustomfields.com/) (ACF) and [ACF-to-Rest](https://wordpress.org/plugins/acf-to-rest-api/) API in one of our experiments.  This trio can be used to implement a cheap and flexible headless CMS but as anyone who has worked with ACF knows, retrieving the underlying data can be slow if one relies on the current WP plugins. In this post I am going to describe how we have overcome this problem and introduce our [open source](https://github.com/suprnation/wordpress-acf) initiative that drastically reduces the number of queries and round trips to the database.  

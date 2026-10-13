@@ -2,6 +2,8 @@
 layout: post
 title: Functional Programming to the max
 image: /images/lambda.jpg
+theme: fp
+summary: "A small procedural program, made functional one step at a time."
 ---
 <img class="title" src="{{ site.baseurl }}/images/lambda.jpg"/>
 This post is an adaptation of the talk [FP to the max](https://www.youtube.com/watch?v=sxudIMiOo68), credit goes to [John A De Goes](https://twitter.com/jdegoes).  We will take a minimal example written in a procedural style and introduce functional programming techniques and principles to create a more principled application.  It is important to preface this post with a disclaimer which is _:warning:Do not try this on your codebase!!:warning:_ - this example is an overkill and is only intended to help developers see how functional concepts can be applied on a small scale so that they can extrapolate these techniques on larger projects.   

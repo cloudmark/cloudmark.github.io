@@ -2,6 +2,8 @@
 layout: post
 title: Houses, Arrays and Higher Order Functions
 image: /images/home.png
+theme: fp
+summary: "Mapping, filtering and reducing a street of houses with higher order functions."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/home.png"/>

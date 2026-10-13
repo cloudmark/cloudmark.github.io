@@ -2,6 +2,8 @@
 layout: post
 title: Computation Context - Walk the Line
 image: /images/context/tight.png
+theme: fp
+summary: "Why FP is more than a refactor: effects as computation contexts."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/context/tight.jpg"/>

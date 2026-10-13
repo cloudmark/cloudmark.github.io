@@ -2,6 +2,8 @@
 layout: post
 title: Data Abstraction and Closures
 image: /images/sicp.jpg
+theme: fp
+summary: "SICP's picture language in JavaScript, to show data abstraction with closures."
 ---
 <img class="title" src="{{ site.baseurl }}/images/sicp.jpg"/>
 This example is an adaptation of the SICP Picture Language example found in the book [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/full-text/book/book.html). In this exercise I will translate the original Scheme implementation to Javascript and use it as a tutorial to drive home the importance of closures, data abstraction.  The complete code can be found in the [**picturelang**](https://github.com/cloudmark/picturelang/). 

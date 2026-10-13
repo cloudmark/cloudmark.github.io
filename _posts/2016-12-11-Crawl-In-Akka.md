@@ -2,6 +2,8 @@
 layout: post
 title: Crawling the Web using Actors
 image: /images/akka/akka.png
+theme: actors
+summary: "A web crawler built from Akka actors, one task at a time."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/akka/akka.png"/> Here is a simple fact: [the free lunch is over](http://www.gotw.ca/publications/concurrency-ddj.htm).  CPUs aren't getting any faster but rather they are getting wider. Nowadays we can find multiple execution cores within one chip with shared memory or virtual cores sharing a single physical execution core however CPU's aren't doubling in speed.  What this means is that concurrency is inevitable and we have to adapt to this new programming landscape in order to create event-driven, scalable, resilient and (hence) responsive programs. In this blog we are going to introduce the Actor Model and create a Crawl Server using Akka and Scala to piece everything together.  

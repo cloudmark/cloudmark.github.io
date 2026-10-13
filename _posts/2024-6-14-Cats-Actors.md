@@ -1,7 +1,10 @@
 ---
 layout: post
 title: A Logic Circuit Simulator with Cats-Actors
+tags: [cats-actors]
 image: /images/cats-actors/logo-small.png
+theme: actors
+summary: "A logic circuit simulator where every gate is an actor."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/cats-actors/logo-small.png"/>

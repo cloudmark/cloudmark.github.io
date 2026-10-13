@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Language Detection using N-Grams - Part II
+tags: [language-detection]
 image: /images/language/language-impl.png
+theme: ml
+summary: "Building language profiles from real text, and scoring sentences against them."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/language/language-impl.png"/> In our previous post we have described the general process of training an N-Gram language detector.  If you have not yet read the post describing the general technique I suggest that you have a look at [that]({{ site.baseurl }}/Language-Detection/) first.  In this post we will go through the implementation details and creation of a simple language detector using Node.  To keep this post concise I will set the language detection parameters - _top n-grams to select_ and _n-gram length_ - manually.  In a future post I will show you how to optimise the selection of these parameters by splitting the dataset into three parts; _training_, _validation_ and _test_.   

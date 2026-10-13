@@ -1,0 +1,9 @@
+{% comment %}Renders a post's tags; series tags (see _data/series.yml) get their own badge. Usage: {% include tags.html post=post %}{% endcomment %}
+{% for tag in include.post.tags %}
+  {% assign series = site.data.series[tag] %}
+  {% if series %}
+<span class="tag tag-series tag-{{ tag }}"><img src="{{ site.baseurl }}{{ series.icon }}" alt=""/>{{ series.label }}</span>
+  {% else %}
+<span class="tag">{{ tag }}</span>
+  {% endif %}
+{% endfor %}

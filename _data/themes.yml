@@ -1,0 +1,51 @@
+# Themes group posts on the home page. Give a post `theme: <key>` in its front matter.
+# Order here is the order on the home page. `doodle` names a file in _includes/doodles/.
+# Optional `project` / `project_url` add a project link to the theme's plate.
+- key: events
+  name: Event logs
+  color: "#1f9e8e"
+  tint: "#dff3ef"
+  text: "#146b61"
+  doodle: tickets
+  blurb: An ordered log, read three ways, folded into state.
+  project: EventStore
+  project_url: https://github.com/fifteen02/eventstore
+- key: actors
+  name: Actors
+  color: "#f07f1f"
+  tint: "#fdebd6"
+  text: "#a4500a"
+  doodle: alicebob
+  blurb: Messages, mailboxes and supervision, from Akka to Cats-Actors.
+  project: Cats-Actors
+  project_url: https://github.com/suprnation/cats-actors
+- key: fp
+  name: Functional programming
+  color: "#6c5ce7"
+  tint: "#ebe8ff"
+  text: "#4a3cc0"
+  doodle: crown
+  blurb: From closures to lambda calculus to ZIO.
+- key: infra
+  name: Infrastructure
+  color: "#3c84d6"
+  tint: "#e1edfb"
+  text: "#235f9f"
+  doodle: containers
+  blurb: Containers and Kubernetes, the parts I actually used.
+- key: ml
+  name: Machine learning
+  color: "#6f9a2c"
+  tint: "#ebf3dc"
+  text: "#4b6b17"
+  doodle: tree
+  blurb: Small models, built by hand.
+  project: Agentomics-ML
+  project_url: https://github.com/BioGeMT/Agentomics-ML
+- key: web
+  name: Web
+  color: "#e4475a"
+  tint: "#fde3e6"
+  text: "#b02236"
+  doodle: braces
+  blurb: Front-end tricks from the Angular years.

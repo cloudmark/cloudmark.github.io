@@ -2,6 +2,8 @@
 layout: post
 title: Dockerise, Deploy, Update Code, Repeat
 image: /images/kubernetes/kubernetes.png
+theme: infra
+summary: "A Spring Boot Hello World, packaged with Docker and deployed on Kubernetes."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/kubernetes/kubernetes.png"/> At SuprNation we have been using Docker for quite a while now. [Docker](http://www.docker.io) has been an amazing tool in our arsenal - it has enabled us to package and deploy microservices without having to worry about inconsistencies (library, servers, OS) between live, staging and dev environments.  In this post we will create a simple Java/Spring application, container-ise it using Docker, and deploy it on [Google Cloud Platform](https://cloud.google.com/) using [Kubernetes](http://kubernetes.io/).  

@@ -2,6 +2,8 @@
 layout: post
 title: Higher Order Functions in Practice 
 image: /images/lambda.jpg
+theme: fp
+summary: "What a higher order function is, shown in JavaScript."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/lambda.jpg"/>

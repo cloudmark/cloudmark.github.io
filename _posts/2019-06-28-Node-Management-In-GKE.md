@@ -2,6 +2,8 @@
 layout: post
 title: Node Management in GKE
 image: /images/gke/gke.png
+theme: infra
+summary: "How our GKE node pools recover from crashes on their own."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/gke/gke.png"/> It's been one heck of a week! I'm back from the Google Cloud Summit in Milan - #GoogleCloudSummit - where Mattia (@mattiagnd) and I spoke about _Node management in GKE_.  In this blog I would like to take some points discussed in that presentation and really outline some key takeaways; specifically what happens during an upgrade and what steps we (as clients of GKE) can take in order to manage disruptions.

@@ -1,17 +1,47 @@
+$mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
 .highlight {
-  //background-color: #efefef;
-  //padding: 7px 7px 7px 10px;
-  //border: 1px solid #ddd;
-  //-moz-box-shadow: 3px 3px rgba(0,0,0,0.1);
-  //-webkit-box-shadow: 3px 3px rgba(0,0,0,0.1);
-  //box-shadow: 3px 3px rgba(0,0,0,0.1);
-  margin: 20px 20px;
+  margin: 1.4em 0;
   overflow: auto;
+  border-radius: 8px;
+}
+
+.highlight pre {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.55;
+  tab-size: 4;
+}
+
+.highlight code {
+  font-size: inherit;
+  background: none;
+  padding: 0;
 }
 
 code {
-  font-size: 18px;
-  font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  font-family: $mono;
+  font-size: 0.72em;
+  background: #f1f1ee;
+  border-radius: 4px;
+  padding: 0.12em 0.35em;
+}
+
+pre {
+  font-family: $mono;
+}
+
+@media screen and (max-width: 640px) {
+  .highlight {
+    margin: 1.2em -20px;
+    border-radius: 0;
+  }
+
+  .highlight pre {
+    font-size: 13.5px;
+    padding: 14px 20px;
+  }
 }
 
 .highlight .hll { background-color: #49483e }

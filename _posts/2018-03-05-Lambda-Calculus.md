@@ -2,6 +2,8 @@
 layout: post
 title: Lambda Calculus is Dead! Long live Lambda Calculus!
 image: /images/lambda/haskell.png
+theme: fp
+summary: "Numbers, booleans and recursion from nothing but functions."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/lambda/haskell.png"/>  

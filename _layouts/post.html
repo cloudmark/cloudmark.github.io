@@ -1,17 +1,69 @@
 ---
 layout: default
 ---
+{% assign theme = site.data.themes | where: "key", page.theme | first %}
+{% assign series_key = nil %}{% for tag in page.tags %}{% if site.data.series[tag] %}{% assign series_key = tag %}{% endif %}{% endfor %}
+{% if series_key %}{% assign series_n = site.posts | where_exp: "p", "p.tags contains series_key" %}{% if series_n.size < 2 %}{% assign series_key = nil %}{% endif %}{% endif %}
+<div class="post-grid"{% if theme %} style="--tint:{{ theme.tint }};--c:{{ theme.color }};--ct:{{ theme.text }}"{% endif %}>
+  <a class="back" href="{{ site.baseurl }}/{% if theme %}#{{ theme.key }}{% endif %}">{% include arrow.html back=true %} all writing</a>
+  <aside class="rail">
+    {% if theme %}<a class="rail-doodle" href="{{ site.baseurl }}/#{{ theme.key }}" aria-label="More in {{ theme.name }}">{% include doodle.html theme=theme %}</a>{% endif %}
+    <nav class="toc" aria-label="In this post" hidden><b>In this post</b><div></div></nav>
+  </aside>
+  <article class="post">
+    <h1 class="pt">{{ page.title }}</h1>
+    <div class="meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time> · {{ content | number_of_words | divided_by: 220 | plus: 1 }} min read
+      {% if theme %} · <a class="theme-link" href="{{ site.baseurl }}/#{{ theme.key }}">{{ theme.name }}</a>{% endif %}
+      {% if series_key %}
+        {% assign series = site.posts | where_exp: "p", "p.tags contains series_key" | sort: "date" %}
+        {% for p in series %}{% if p.url == page.url %}{% assign part = forloop.index %}{% endif %}{% endfor %}
+        · <a class="series-link" href="#series">{{ site.data.series[series_key].label | remove: " series" }}, part {{ part }} of {{ series.size }}</a>
+      {% endif %}
+    </div>
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
+    <div class="prose">
+      {{ content }}
+    </div>
 
-  <div class="entry">
-    {{ content }}
-  </div>
+    {% if series_key %}
+      {% assign sd = site.data.series[series_key] %}
+      <nav class="series" id="series" aria-labelledby="series-h">
+        <h2 id="series-h">The {{ sd.label | remove: " series" }} series</h2>
+        <ol>
+          {% for p in series %}<li>{% if p.url == page.url %}<b aria-current="page">{{ p.title }}</b>{% else %}<a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>{% endif %}</li>{% endfor %}
+        </ol>
+        {% if sd.url %}<a class="project" href="{{ sd.url }}">{{ sd.project }} on GitHub {% include arrow.html %}</a>{% endif %}
+      </nav>
+    {% endif %}
 
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
+    {% if theme %}
+      {% assign same = site.posts | where: "theme", page.theme | sort: "date" %}
+      {% for p in same %}{% if p.url == page.url %}{% assign i = forloop.index0 %}{% endif %}{% endfor %}
+      {% assign prev_i = i | minus: 1 %}{% assign next_i = i | plus: 1 %}
+      {% if same.size > 1 %}
+      <nav class="next" aria-label="More in {{ theme.name }}">
+        {% if i > 0 %}{% assign p = same[prev_i] %}<a href="{{ site.baseurl }}{{ p.url }}"><small>{% include arrow.html back=true %} Previous in {{ theme.name | downcase }}</small><b>{{ p.title }}</b></a>{% else %}<span></span>{% endif %}
+        {% if next_i < same.size %}{% assign p = same[next_i] %}<a class="fwd" href="{{ site.baseurl }}{{ p.url }}"><small>Next in {{ theme.name | downcase }} {% include arrow.html %}</small><b>{{ p.title }}</b></a>{% endif %}
+      </nav>
+      {% endif %}
+    {% endif %}
 
-  {% include disqus.html %}
-</article>
+    {% include disqus.html %}
+  </article>
+</div>
+<script>
+  // Contents from the post's own h2s; shown only when there are enough to help.
+  (function () {
+    var h1s = document.querySelectorAll('.prose h1[id]'), hs = h1s.length >= 2 ? h1s : document.querySelectorAll('.prose h2[id]'), toc = document.querySelector('.toc');
+    if (hs.length < 3 || !toc) return;
+    var list = toc.querySelector('div');
+    hs.forEach(function (h) { var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.textContent; list.appendChild(a); });
+    toc.hidden = false;
+    var links = list.querySelectorAll('a');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.toggleAttribute('aria-current', a.hash === '#' + e.target.id); }); });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    hs.forEach(function (h) { io.observe(h); });
+  })();
+</script>

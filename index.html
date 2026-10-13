@@ -1,18 +1,123 @@
 ---
 layout: default
 ---
+{% assign latest = site.posts.first %}
+{% assign latest_theme = site.data.themes | where: "key", latest.theme | first %}
+{% assign now_s = site.time | date: "%s" | plus: 0 %}
+{% assign new_window = 7776000 %}{% comment %}90 days: posts younger than this get a "new" mark.{% endcomment %}
+<div class="col home">
+  <section class="intro">
+    <h1 class="display">Tutorials you can run.</h1>
+    <p class="lede">I'm Mark. I write <mark>long, hands-on tutorials</mark> and build the tools I write about.</p>
+  </section>
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+  {% include series-part.html post=latest %}
+  <article class="latest"{% if latest_theme %} style="--tint:{{ latest_theme.tint }};--c:{{ latest_theme.color }};--ct:{{ latest_theme.text }}"{% endif %} aria-labelledby="t-latest">
+    {% if latest_theme %}{% include doodle.html theme=latest_theme %}{% endif %}
+    <div>
+      <h2 id="t-latest"><a href="{{ site.baseurl }}{{ latest.url }}">{{ latest.title }}</a></h2>
+      <p class="meta">Latest post · <time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: "%-d %b %Y" }}</time>{% if latest_theme %} · {{ latest_theme.name }}{% endif %}{% if part %} · part {{ part }} of {{ part_of }}{% endif %}</p>
+      {% if latest.summary %}<p class="sum">{{ latest.summary }}</p>{% endif %}
+      <p class="acts">
+        <a class="go" href="{{ site.baseurl }}{{ latest.url }}">Read the post {% include arrow.html %}</a>
+        {% if part and part > 1 %}{% assign first = site.posts | where_exp: "p", "p.tags contains part_key" | sort: "date" | first %}<a class="alt" href="{{ site.baseurl }}{{ first.url }}">or start the series at part 1</a>{% endif %}
+      </p>
+    </div>
+  </article>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+  <div class="view-switch" role="group" aria-label="Show posts">
+    <button type="button" data-view="all" aria-pressed="true">Newest first</button>
+    <button type="button" data-view="themes" aria-pressed="false">By theme</button>
+  </div>
 
-      <div class="entry">
-        {{ post.excerpt }}
+  <section class="view-all" aria-label="All posts, newest first">
+    {% assign rest = site.posts | slice: 1, site.posts.size %}
+    {% assign by_year = rest | group_by_exp: "p", "p.date | date: '%Y'" %}
+    {% for year in by_year %}
+    <h2 class="year">{{ year.name }}</h2>
+    <ol class="posts chrono">
+      {% for post in year.items %}
+      {% include series-part.html post=post %}
+      {% assign pt = site.data.themes | where: "key", post.theme | first %}
+      {% assign age = post.date | date: "%s" | plus: 0 %}{% assign age = now_s | minus: age %}
+      <li{% if pt %} style="--tint:{{ pt.tint }};--c:{{ pt.color }};--ct:{{ pt.text }}"{% endif %}>
+        {% if pt %}{% include doodle.html theme=pt class="tile" %}{% else %}<span class="tile"></span>{% endif %}
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if age < new_window %} <span class="new">new</span>{% endif %}
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b" }}</time>
+        <p>{% if pt %}<a class="tag" href="#{{ pt.key }}">{{ pt.name }}</a> · {% endif %}{% if part %}<span class="part">Part {{ part }} of {{ part_of }}</span> · {% endif %}{% if post.summary %}{{ post.summary }}{% else %}{{ post.excerpt | strip_html | truncatewords: 18 }}{% endif %}</p>
+      </li>
+      {% endfor %}
+    </ol>
+    {% endfor %}
+  </section>
+
+  <div class="view-themes">
+
+
+  <nav class="theme-index" aria-label="Themes">
+    {% for theme in site.data.themes %}{% assign n = site.posts | where: "theme", theme.key %}{% if n.size > 0 %}<a href="#{{ theme.key }}" style="--tint:{{ theme.tint }};--c:{{ theme.color }}">{% include doodle.html theme=theme class="mini" %}<span>{{ theme.name }}</span> <small>{{ n.size }}</small></a>{% endif %}{% endfor %}
+  </nav>
+
+  {% for theme in site.data.themes %}
+    {% assign posts = site.posts | where: "theme", theme.key | sort: "date" %}
+    {% if posts.size > 0 %}
+    {% assign y0 = posts.first.date | date: "%Y" %}{% assign y1 = posts.last.date | date: "%Y" %}
+    <section class="theme" id="{{ theme.key }}" style="--tint:{{ theme.tint }};--c:{{ theme.color }};--ct:{{ theme.text }}" aria-labelledby="t-{{ theme.key }}">
+      <div class="plate">
+        {% include doodle.html theme=theme %}
+        <div>
+          <h2 id="t-{{ theme.key }}">{{ theme.name }}</h2>
+          <p>{{ theme.blurb }}</p>
+          <span class="count">{{ posts.size }} post{% if posts.size > 1 %}s{% endif %} · {% if y0 == y1 %}{{ y0 }}{% else %}{{ y0 }}–{{ y1 }}{% endif %}</span>
+          {% if theme.project %}<a class="project" href="{{ theme.project_url }}">{{ theme.project }} on GitHub {% include arrow.html %}</a>{% endif %}
+        </div>
       </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
+      <ol class="posts">
+        {% for post in posts %}
+        {% include series-part.html post=post %}
+        {% assign age = post.date | date: "%s" | plus: 0 %}{% assign age = now_s | minus: age %}
+        <li>
+          <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if age < new_window %} <span class="new">new</span>{% endif %}
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
+          <p>{% if part %}<span class="part">Part {{ part }} of {{ part_of }}</span> · {% endif %}{% if post.summary %}{{ post.summary }}{% else %}{{ post.excerpt | strip_html | truncatewords: 18 }}{% endif %}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endif %}
   {% endfor %}
+
+  {% assign loose = site.posts | where_exp: "p", "p.theme == nil" | sort: "date" %}
+  {% if loose.size > 0 %}
+  <section class="theme loose" style="--tint:#f1f2f7;--c:#7a7e99;--ct:#45496a" aria-labelledby="t-loose">
+    <div class="plate"><div><h2 id="t-loose">Odds and ends</h2><p>Posts that don't belong to a theme (yet).</p><span class="count">{{ loose.size }} post{% if loose.size > 1 %}s{% endif %}</span></div></div>
+    <ol class="posts">
+      {% for post in loose %}<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time></li>{% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
+  </div>
+
+  <h2 class="say">Things I build</h2>
+  <a class="proj" href="https://github.com/suprnation/cats-actors"><img src="{{ site.baseurl }}/images/cats-actors/logo-small.png" alt=""><div><b>Cats-Actors</b><span>Typed, functional actors for Scala on the JVM, JS and Native.</span></div><span class="go">GitHub {% include arrow.html %}</span></a>
+  <a class="proj" href="https://github.com/fifteen02/eventstore"><img src="{{ site.baseurl }}/images/eventstore/logo-small.png" alt=""><div><b>EventStore</b><span>One ordered log you can pull from, push from and shard.</span></div><span class="go">GitHub {% include arrow.html %}</span></a>
+  <a class="proj" href="https://github.com/BioGeMT/Agentomics-ML"><img src="https://avatars.githubusercontent.com/u/133680743?s=104" alt=""><div><b>Agentomics-ML</b><span>Autonomous agents that develop supervised ML models, made for biomedical data. Built with the BioGeMT group.</span></div><span class="go">GitHub {% include arrow.html %}</span></a>
 </div>
+<script>
+  // Newest-first list or themed contents; the choice is remembered, and a theme link (#events) opens the themed view.
+  (function () {
+    var home = document.querySelector('.home'), btns = home.querySelectorAll('.view-switch button');
+    var ids = [].map.call(home.querySelectorAll('.theme[id]'), function (s) { return s.id; });
+    function show(view, save) {
+      home.classList.toggle('by-theme', view === 'themes');
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.view === view); });
+      if (save) try { localStorage.setItem('home-view', view); } catch (e) {}
+    }
+    var saved = null; try { saved = localStorage.getItem('home-view'); } catch (e) {}
+    function fromHash() { var id = location.hash.slice(1); if (ids.indexOf(id) > -1) { show('themes'); var el = document.getElementById(id); if (el) el.scrollIntoView(); return true; } }
+    if (!fromHash()) show(saved === 'themes' ? 'themes' : 'all');
+    window.addEventListener('hashchange', fromHash);
+    btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view, true); }); });
+  })();
+</script>

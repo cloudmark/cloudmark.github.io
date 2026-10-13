@@ -1,59 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
     {% include meta.html %}
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@400..800&display=swap">
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
     <link rel="me" href="https://mastodon.social/@cloudmark">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="{{ site.baseurl }}/feed.xml">
   </head>
-
   <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
-
-
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
-          </nav>
-        </header>
-      </div>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="col">
+      <header class="top">
+        <a class="me" href="{{ site.baseurl }}/" aria-label="Home"><img src="{{ site.avatar }}" alt=""><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">{% include doodles/ring.svg %}</svg></a>
+        <div class="who"><a href="{{ site.baseurl }}/"><b>{{ site.name }}</b></a><span>stay safe, keep hacking!</span></div>
+        <nav class="mini" aria-label="Site">
+          <a href="{{ site.baseurl }}/"{% if page.url == "/" or page.layout == "post" %} aria-current="page"{% endif %}>Writing</a>
+          <a href="{{ site.baseurl }}/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
+          <a href="{{ site.baseurl }}/feed.xml">RSS</a>
+        </nav>
+      </header>
     </div>
 
-    <div id="main" role="main" class="container">
+    <main id="main">
       {{ content }}
-    </div>
+    </main>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
+    <div class="col">
+      <footer class="end">
+        <span class="hand">stay safe, keep hacking!</span>
+        <nav aria-label="Elsewhere">
+          <a href="https://github.com/{{ site.footer-links.github }}">GitHub</a>
+          <a href="https://mastodon.social/@{{ site.footer-links.mastodon }}">Mastodon</a>
+          <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}">LinkedIn</a>
+          <a href="{{ site.baseurl }}/feed.xml">RSS</a>
+        </nav>
+      </footer>
     </div>
 
     {% include analytics.html %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.mermaid) mermaid.initialize({ startOnLoad: true });
+      });
+    </script>
   </body>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      mermaid.initialize({ startOnLoad: true });
-    });
-  </script>
 </html>

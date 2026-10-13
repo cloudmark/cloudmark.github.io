@@ -1,0 +1,15 @@
+# Post tags that group posts into a series. Tag a post with `tags: [<key>]`.
+# Optional `project` / `url` link the series to its repository.
+eventstore:
+  label: EventStore series
+  icon: /images/eventstore/logo-small.png
+  project: EventStore
+  url: https://github.com/fifteen02/eventstore
+cats-actors:
+  label: Cats-Actors series
+  icon: /images/cats-actors/logo-small.png
+  project: Cats-Actors
+  url: https://github.com/suprnation/cats-actors
+language-detection:
+  label: Language Detection series
+  icon: /images/language/language.png

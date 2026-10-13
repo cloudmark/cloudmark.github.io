@@ -2,6 +2,8 @@
 layout: post
 title: Performant Functional Programming to the max with ZIO
 image: /images/zio/zio.png
+theme: fp
+summary: "Rebuilding ACME's order summary with ZIO, pure and fast."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/zio/zio.png"/> I have been doing functional programming for quite some time in the small - `map`, `filter`, `flatMap`, `for` comprehensions, catz etc.  While I was sold on the great benefits of FP I've struggled to transition to doing FP in the large without hitting runtime overheads.  This is where [ZIO](https://github.com/scalaz/scalaz-zio) comes in the picture.  ZIO makes programming in the large simple and provides the ability to interop with other parts of the broader functional ecosystem.  In this blog post I will describe a fictitious business problem, implement it in an imperative way and rewrite the application in a functional "equivalent" using ZIO.

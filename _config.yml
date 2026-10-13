@@ -102,3 +102,6 @@ exclude:
     - LICENSE
     - README.md
     - CNAME
+    - PRODUCT.md
+    - DESIGN.md
+    - scripts

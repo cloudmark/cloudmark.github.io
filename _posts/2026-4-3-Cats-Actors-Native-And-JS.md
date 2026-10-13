@@ -1,7 +1,10 @@
 ---
 layout: post
 title: "Cats-Actors 2.1.0 Goes Cross-Platform"
+tags: [cats-actors]
 image: /images/cats-actors/logo-small.png
+theme: actors
+summary: "One actor codebase on the JVM, as a native binary, and in the browser."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/cats-actors/logo-small.png"/>

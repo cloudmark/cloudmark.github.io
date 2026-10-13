@@ -1,7 +1,10 @@
 ---
 layout: post
 title: "Cats-Actors 2.2.0: Taking Control of Time"
+tags: [cats-actors]
 image: /images/cats-actors/logo-small.png
+theme: actors
+summary: "Testing timers and timeouts without sleeps, using a clock you control."
 ---
 
 <img class="title" src="{{ site.baseurl }}/images/cats-actors/logo-small.png"/>
