@@ -5,7 +5,7 @@
     {% include meta.html %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/iosevka@5.0.11/400.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/iosevka@5.0.11/400-italic.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v={{ site.time | date: '%s' }}">
@@ -14,6 +14,7 @@
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="masthead">
     <div class="col">
       <header class="top">
         <a class="me" href="{{ site.baseurl }}/" aria-label="Home"><img src="{{ site.avatar }}" alt=""></a>
@@ -23,8 +24,36 @@
           <a href="{{ site.baseurl }}/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
           <a href="{{ site.baseurl }}/feed.xml">RSS</a>
         </nav>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       </header>
     </div>
+    </div>
+
+    <dialog class="drawer" id="drawer" aria-label="Menu">
+      <div class="drawer-head">
+        <a class="me" href="{{ site.baseurl }}/" aria-label="Home"><img src="{{ site.avatar }}" alt=""></a>
+        <div class="who"><b>{{ site.name }}</b><span>stay safe, keep hacking!</span></div>
+        <button class="drawer-close" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+      <nav class="drawer-nav" aria-label="Site">
+        <a href="{{ site.baseurl }}/"{% if page.url == "/" or page.layout == "post" %} aria-current="page"{% endif %}>Writing</a>
+        <a href="{{ site.baseurl }}/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
+        <a href="{{ site.baseurl }}/feed.xml">RSS</a>
+      </nav>
+      <div class="drawer-toc" hidden><h2>In this post</h2><div></div></div>
+      <h2>Themes</h2>
+      <nav class="drawer-themes" aria-label="Themes">
+        {% for theme in site.data.themes %}{% assign n = site.posts | where: "theme", theme.key %}{% if n.size > 0 %}<a href="{{ site.baseurl }}/#{{ theme.key }}" style="--tint:{{ theme.tint }};--c:{{ theme.color }}">{% include doodle.html theme=theme class="mini" %}<span>{{ theme.name }}</span></a>{% endif %}{% endfor %}
+      </nav>
+      <div class="drawer-foot">
+        <p><span>I build</span> <a href="https://github.com/suprnation/cats-actors">Cats-Actors</a> · <a href="https://github.com/fifteen02/eventstore">EventStore</a> · <a href="https://github.com/BioGeMT/Agentomics-ML">Agentomics-ML</a></p>
+        <nav aria-label="Elsewhere">
+          <a href="https://github.com/{{ site.footer-links.github }}">GitHub</a>
+          <a href="https://mastodon.social/@{{ site.footer-links.mastodon }}">Mastodon</a>
+          <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}">LinkedIn</a>
+        </nav>
+      </div>
+    </dialog>
 
     <main id="main">
       {{ content }}
@@ -42,6 +71,20 @@
       </footer>
     </div>
 
+    <script>
+      // Phone menu: a drawer that slides in from the left. <dialog> handles focus, Esc and the backdrop.
+      (function () {
+        var d = document.getElementById('drawer'), open = document.querySelector('.menu-btn');
+        if (!d || !d.showModal) return;
+        function close() { d.classList.add('closing'); setTimeout(function () { d.classList.remove('closing'); d.close(); }, 200); }
+        open.addEventListener('click', function () { d.showModal(); open.setAttribute('aria-expanded', 'true'); });
+        d.addEventListener('close', function () { open.setAttribute('aria-expanded', 'false'); });
+        d.querySelector('.drawer-close').addEventListener('click', close);
+        d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('a')) close(); });
+        d.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+        window.matchMedia('(min-width: 761px)').addEventListener('change', function (m) { if (m.matches && d.open) d.close(); });
+      })();
+    </script>
     {% include analytics.html %}
     <script>
       document.addEventListener('DOMContentLoaded', function () {

@@ -5,7 +5,7 @@ layout: default
 {% assign series_key = nil %}{% for tag in page.tags %}{% if site.data.series[tag] %}{% assign series_key = tag %}{% endif %}{% endfor %}
 {% if series_key %}{% assign series_n = site.posts | where_exp: "p", "p.tags contains series_key" %}{% if series_n.size < 2 %}{% assign series_key = nil %}{% endif %}{% endif %}
 <div class="post-grid"{% if theme %} style="--tint:{{ theme.tint }};--c:{{ theme.color }};--ct:{{ theme.text }}"{% endif %}>
-  <a class="back" href="{{ site.baseurl }}/{% if theme %}#{{ theme.key }}{% endif %}">{% include arrow.html back=true %} all writing</a>
+  <a class="back" href="{{ site.baseurl }}/">{% include arrow.html back=true %} All posts</a>
   <aside class="rail">
     {% if theme %}<a class="rail-doodle" href="{{ site.baseurl }}/#{{ theme.key }}" aria-label="More in {{ theme.name }}">{% include doodle.html theme=theme %}</a>{% endif %}
     <nav class="toc" aria-label="In this post" hidden><b>In this post</b><div></div></nav>
@@ -77,9 +77,12 @@ layout: default
     var list = toc.querySelector('div');
     hs.forEach(function (h) { var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.textContent; list.appendChild(a); });
     toc.hidden = false;
+    var dt = document.querySelector('.drawer-toc');
+    if (dt) { dt.querySelector('div').innerHTML = list.innerHTML; dt.hidden = false; dt.style.setProperty('--c', getComputedStyle(document.querySelector('.post-grid')).getPropertyValue('--c')); }
+    var all = document.querySelectorAll('.toc a, .drawer-toc a');
     var links = list.querySelectorAll('a');
     var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.toggleAttribute('aria-current', a.hash === '#' + e.target.id); }); });
+      es.forEach(function (e) { if (e.isIntersecting) all.forEach(function (a) { a.toggleAttribute('aria-current', a.hash === '#' + e.target.id); }); });
     }, { rootMargin: '0px 0px -70% 0px' });
     hs.forEach(function (h) { io.observe(h); });
   })();

@@ -4,7 +4,7 @@ layout: default
 {% assign latest = site.posts.first %}
 {% assign latest_theme = site.data.themes | where: "key", latest.theme | first %}
 {% assign now_s = site.time | date: "%s" | plus: 0 %}
-{% assign new_window = 7776000 %}{% comment %}90 days: posts younger than this get a "new" mark.{% endcomment %}
+{% assign new_window = 2592000 %}{% comment %}30 days: posts younger than this get a "new" mark.{% endcomment %}
 <div class="col home">
   <section class="intro">
     <h1 class="display">Tutorials you can run.</h1>
@@ -16,7 +16,7 @@ layout: default
     {% if latest_theme %}{% include doodle.html theme=latest_theme %}{% endif %}
     <div>
       <h2 id="t-latest"><a href="{{ site.baseurl }}{{ latest.url }}">{{ latest.title }}</a></h2>
-      <p class="meta">Latest post · <time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: "%-d %b %Y" }}</time>{% if latest_theme %} · {{ latest_theme.name }}{% endif %}{% if part %} · part {{ part }} of {{ part_of }}{% endif %}</p>
+      <p class="meta">Latest post · <time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: "%-d %b %Y" }}</time> · {{ latest.content | number_of_words | divided_by: 220 | plus: 1 }} min read{% if latest_theme %} · {{ latest_theme.name }}{% endif %}{% if part %} · part {{ part }} of {{ part_of }}{% endif %}</p>
       {% if latest.summary %}<p class="sum">{{ latest.summary }}</p>{% endif %}
       <p class="acts">
         <a class="go" href="{{ site.baseurl }}{{ latest.url }}">Read the post {% include arrow.html %}</a>
@@ -31,8 +31,7 @@ layout: default
   </div>
 
   <section class="view-all" aria-label="All posts, newest first">
-    {% assign rest = site.posts | slice: 1, site.posts.size %}
-    {% assign by_year = rest | group_by_exp: "p", "p.date | date: '%Y'" %}
+    {% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
     {% for year in by_year %}
     <h2 class="year">{{ year.name }}</h2>
     <ol class="posts chrono">
