@@ -4,7 +4,7 @@ layout: default
 {% assign latest = site.posts.first %}
 {% assign latest_theme = site.data.themes | where: "key", latest.theme | first %}
 {% assign now_s = site.time | date: "%s" | plus: 0 %}
-{% assign new_window = 2592000 %}{% comment %}30 days: posts younger than this get a "new" mark.{% endcomment %}
+{% assign new_window = 2592000 %}{% comment %}30 days: the latest post gets a "new" mark while younger than this.{% endcomment %}
 <div class="col home">
   <section class="intro">
     <h1 class="display">Notes from building things.</h1>
@@ -41,7 +41,7 @@ layout: default
       {% assign age = post.date | date: "%s" | plus: 0 %}{% assign age = now_s | minus: age %}
       <li{% if pt %} style="--tint:{{ pt.tint }};--c:{{ pt.color }};--ct:{{ pt.text }}"{% endif %}>
         {% if pt %}{% include doodle.html theme=pt class="tile" %}{% else %}<span class="tile"></span>{% endif %}
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if age < new_window %} <span class="new">new</span>{% endif %}
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if post.url == latest.url and age < new_window %} <span class="new">new</span>{% endif %}
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b" }}</time>
         <p>{% if pt %}<a class="tag" href="#{{ pt.key }}">{{ pt.name }}</a> · {% endif %}{% if part %}<span class="part">Part {{ part }} of {{ part_of }}</span> · {% endif %}{% if post.summary %}{{ post.summary }}{% else %}{{ post.excerpt | strip_html | truncatewords: 18 }}{% endif %}</p>
       </li>
@@ -76,7 +76,7 @@ layout: default
         {% include series-part.html post=post %}
         {% assign age = post.date | date: "%s" | plus: 0 %}{% assign age = now_s | minus: age %}
         <li>
-          <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if age < new_window %} <span class="new">new</span>{% endif %}
+          <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>{% if post.url == latest.url and age < new_window %} <span class="new">new</span>{% endif %}
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
           <p>{% if part %}<span class="part">Part {{ part }} of {{ part_of }}</span> · {% endif %}{% if post.summary %}{{ post.summary }}{% else %}{{ post.excerpt | strip_html | truncatewords: 18 }}{% endif %}</p>
         </li>
