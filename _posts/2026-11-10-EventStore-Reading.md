@@ -1,9 +1,8 @@
 ---
-published: false
 layout: post
 title: "EventStore: Reading the Log by Pulling, Pushing and Sharding"
 image: /images/eventstore/logo-small.png
-date: 2026-10-13 00:02:00 +0200
+date: 2026-11-10 00:01:00 +0100
 tags: [eventstore]
 theme: events
 summary: "Pulling, pushing and sharding, and exactly when a message arrives twice."
